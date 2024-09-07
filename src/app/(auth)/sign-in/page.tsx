@@ -3,9 +3,9 @@ import { redirect } from "next/navigation";
 import SignInForm from "../../../components/authForm/SignInForm";
 
 const page = async () => {
-  const session = await getSession();
+  const user = await getSession();
 
-  if (session?.user) {
+  if (user) {
     redirect("/");
   }
 
