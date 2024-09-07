@@ -1,11 +1,22 @@
+import { getSession } from "@/actions/auth.action";
+import Link from "next/link";
 import SelectTheme from "../navbar/SelectTheme";
-import UserAvatar from "../UserAvatar";
+import { buttonVariants } from "../ui/button";
+import SessionBtn from "./SessionMenu";
 
-const RightPartHeader = () => {
+const RightPartHeader = async () => {
+  const user = await getSession();
+
   return (
     <div className="flex gap-4 pr-4">
       <SelectTheme />
-      <UserAvatar imageUrl="https://lh3.googleusercontent.com/a/ACg8ocIo4cqT0EBLj7q7hixwniEtetz3U0plVR9sdwV6PbqLIKioOQg=s360-c-no" />
+      {user ? (
+        <SessionBtn />
+      ) : (
+        <Link href="/sign-in" className={buttonVariants()}>
+          Sign in
+        </Link>
+      )}
     </div>
   );
 };

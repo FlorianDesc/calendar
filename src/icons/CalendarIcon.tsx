@@ -1,6 +1,10 @@
-import { IconType } from "@/types/icon.type";
+import { SVGProps } from "react";
 
-const CalendarIcon = ({ size }: IconType) => {
+type IconProps = SVGProps<SVGSVGElement> & {
+  size?: number;
+};
+
+const CalendarIcon = ({ size }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

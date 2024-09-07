@@ -27,7 +27,7 @@ const SelectTheme = () => {
         withFocusBorder={false}
         withArrow={false}
         withShadow={false}>
-        {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+        {theme === "light" ? <Sun size={18} /> : <Moon size={18} />}
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="light">Light</SelectItem>

@@ -20,12 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className="min-h-screen w-full text-primary"
-      lang="fr"
-      suppressHydrationWarning>
-      <body
-        className={cn(inter.className, "w-full min-h-screen bg-background")}>
+    <html className="text-primary" lang="fr" suppressHydrationWarning>
+      <body className={cn(inter.className, "bg-background")}>
         <ColorThemeProvider>
           <div className="flex">
             <Navbar />

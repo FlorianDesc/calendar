@@ -16,7 +16,10 @@ const NavPath = () => {
           href="/">
           Accueil
         </Link>
-        <ChevronRight size={16} className="text-primary/50" />
+        {pathsArray.length > 0 && (
+          <ChevronRight size={16} className="text-primary/50" />
+        )}
+
         {pathsArray.map((path, index) => {
           const isLast = index === pathsArray.length - 1;
           return (
