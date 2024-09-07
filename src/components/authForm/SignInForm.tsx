@@ -18,9 +18,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Spinner from "../ui/spinner";
 
 const SignInForm = () => {
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   const form = useForm<SignInType>({
@@ -32,6 +34,7 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: SignInType) => {
+    setIsLoading(true);
     const signInData = await signIn("credentials", {
       redirect: false,
       email: values.email,
@@ -40,6 +43,7 @@ const SignInForm = () => {
 
     if (signInData?.error) {
       setError("Email ou mot de passe incorrect.");
+      setIsLoading(false);
     } else {
       router.push("/");
       router.refresh();
@@ -99,9 +103,10 @@ const SignInForm = () => {
             )}
 
             <Button
+              disabled={isLoading}
               type="submit"
-              className="mt-4 w-full bg-primary py-2 text-white">
-              Se connecter
+              className="mt-4 flex w-full items-center justify-center bg-primary py-2 text-white">
+              {isLoading ? <Spinner /> : "Se connecter"}
             </Button>
             <p className="text-center text-sm text-primary/50">
               Vous n&apos;avez pas de compte ?{" "}
