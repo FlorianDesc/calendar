@@ -7,12 +7,102 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String   @unique
-  name      String?
-  password  String
+  id              String     @id @default(cuid())
+  username        String?    @unique
+  password        String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  name            String?
+  email           String?    @unique
+  emailVerified   DateTime?  @map("email_verified")
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  calendars       Calendar[] @relation("UserCalendars")
+  sharedCalendars Calendar[]
+  event           Event[]
+  categories      Category[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Category {
+  id       String     @id @default(cuid())
+  title    String
+  userId   String
+  Calendar Calendar[]
+  user     User       @relation(fields: [userId], references: [id])
+
+  @@map("categories")
+}
+
+model Calendar {
+  id        String   @id @default(cuid())
+  title     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  creatorId String
+  category  Category @relation(fields: [categoryId], references: [id])
+
+  creator User   @relation("UserCalendars", fields: [creatorId], references: [id])
+  users   User[]
+
+  events     Event[]
+  categoryId String
+
+  @@map("calendars")
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  title      String
+  date       DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  calendarId String
+  creatorId  String
+  calendar   Calendar @relation(fields: [calendarId], references: [id])
+  creator    User     @relation(fields: [creatorId], references: [id])
+
+  @@map("events")
 }
