@@ -14,9 +14,11 @@ import { SignUpSchema } from "@/schemas/authFormSchema.schema";
 import { SignUpType } from "@/types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const SignUpForm = () => {
+  const [error, setError] = useState<string | null>();
   const router = useRouter();
   const form = useForm<SignUpType>({
     resolver: zodResolver(SignUpSchema),
@@ -41,6 +43,10 @@ const SignUpForm = () => {
 
     if (response.ok) {
       router.push("/sign-in");
+    } else {
+      if (response.status === 409) {
+        setError("nom d'utilisateur ou email déja enregistrés");
+      }
     }
   };
 
@@ -120,6 +126,10 @@ const SignUpForm = () => {
               )}
             />
 
+            {error && (
+              <p className="mb-4 text-center text-sm text-red-600">{error}</p>
+            )}
+
             <Button
               type="submit"
               className="mt-4 w-full bg-primary py-2 text-background">
@@ -127,14 +137,6 @@ const SignUpForm = () => {
             </Button>
           </form>
         </Form>
-
-        <div className="my-6 flex items-center justify-center">
-          <span className="w-1/5 border-b border-primary lg:w-1/4"></span>
-          <span className="px-2 text-xs uppercase text-primary/50">
-            ou continuer avec
-          </span>
-          <span className="w-1/5 border-b border-primary lg:w-1/4"></span>
-        </div>
       </div>
     </div>
   );

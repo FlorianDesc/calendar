@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/input";
 import { SignInSchema } from "@/schemas/authFormSchema.schema";
 import { SignInType } from "@/types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import GoogleIcon from "@/icons/GoogleIcon";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,6 +25,7 @@ import Spinner from "../ui/spinner";
 const SignInForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
 
   const router = useRouter();
   const form = useForm<SignInType>({
@@ -50,9 +53,14 @@ const SignInForm = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    setIsLoadingGoogle(true);
+    const data = await signIn("google", { callbackUrl: "http://localhost/" });
+  };
+
   return (
     <div className="flex h-full flex-col items-center justify-start px-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-8">
+      <div className="w-full max-w-md rounded-lg bg-background p-8">
         <h1 className="text-center text-2xl font-bold text-primary">
           Se connecter
         </h1>
@@ -105,8 +113,8 @@ const SignInForm = () => {
             <Button
               disabled={isLoading}
               type="submit"
-              className="mt-4 flex w-full items-center justify-center bg-primary py-2 text-white">
-              {isLoading ? <Spinner /> : "Se connecter"}
+              className="mt-4 flex w-full items-center justify-center bg-primary py-2 text-background">
+              {isLoading ? <Spinner variant={"primary"} /> : "Se connecter"}
             </Button>
             <p className="text-center text-sm text-primary/50">
               Vous n&apos;avez pas de compte ?{" "}
@@ -124,6 +132,22 @@ const SignInForm = () => {
           </span>
           <span className="w-1/5 border-b border-primary lg:w-1/4"></span>
         </div>
+
+        <Button
+          disabled={isLoadingGoogle}
+          className="w-full"
+          variant={"secondary"}
+          onClick={handleGoogleSignIn}>
+          {isLoadingGoogle ? (
+            <Spinner variant={"secondary"} />
+          ) : (
+            <div className="flex gap-2">
+              {" "}
+              <GoogleIcon className="size-2" />
+              Google
+            </div>
+          )}
+        </Button>
       </div>
     </div>
   );
