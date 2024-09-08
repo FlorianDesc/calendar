@@ -3,16 +3,20 @@ import { Avatar, AvatarImage } from "./ui/avatar"; // Renommé pour éviter les 
 
 type UserAvatarProps = {
   src: string;
+  hasImage?: boolean;
   alt?: string;
 };
 
-const UserAvatar = ({ src, alt }: UserAvatarProps) => {
+const UserAvatar = ({ src, hasImage = true, alt }: UserAvatarProps) => {
   return (
     <Avatar>
-      <AvatarImage src={src} alt={alt} />
-      <AvatarFallback className="flex size-full items-center justify-center bg-muted">
-        {src.toUpperCase()}
-      </AvatarFallback>
+      {hasImage ? (
+        <AvatarImage src={src} alt={alt} />
+      ) : (
+        <AvatarFallback className="flex size-full items-center justify-center bg-muted">
+          {src.toUpperCase()}
+        </AvatarFallback>
+      )}
     </Avatar>
   );
 };

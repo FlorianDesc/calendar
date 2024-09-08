@@ -1,3 +1,3 @@
-export default function Home() {
+export default function page() {
   return <div className="text-sm text-primary"></div>;
 }

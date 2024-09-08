@@ -23,7 +23,7 @@ const SessionBtn = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar src={src} />
+        <UserAvatar src={src} hasImage={user.image ? true : false} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
