@@ -1,16 +1,19 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import DialogCreateCalendar from "./DialogCreateCalendar";
 
 const NavPath = () => {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const pathsArray = pathname.split("/").filter((elem) => elem !== "");
 
   return (
-    <div className="w-full p-2">
-      <div className="flex items-center gap-3 text-sm">
+    <div className="flex w-full justify-between p-2">
+      <div className="flex gap-3 text-xs">
         <Link
           className={pathsArray.length > 0 ? "text-primary/50" : ""}
           href="/">
@@ -23,10 +26,10 @@ const NavPath = () => {
         {pathsArray.map((path, index) => {
           const isLast = index === pathsArray.length - 1;
           return (
-            <div key={path} className="flex items-center gap-3">
+            <div key={path} className="flex gap-3">
               <Link
                 href={`/${path}`}
-                className={`text-sm ${
+                className={`text-xs ${
                   isLast ? "" : "text-primary/50"
                 } hover:text-gray-700`}>
                 {path}
@@ -38,6 +41,7 @@ const NavPath = () => {
           );
         })}
       </div>
+      {session?.user && <DialogCreateCalendar />}
     </div>
   );
 };
