@@ -1,5 +1,4 @@
 import CalendarIcon from "@/icons/CalendarIcon";
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import LinkList from "./LinkList";
 
@@ -13,10 +12,6 @@ const Navbar = () => {
           <CalendarIcon size={20} />
           Calendar
         </Link>
-        <Plus
-          className="cursor-pointer rounded-md px-1 pb-2 hover:bg-hover-nav"
-          size={22}
-        />
       </div>
       <LinkList />
     </div>

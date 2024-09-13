@@ -3,13 +3,13 @@ import Link from "next/link";
 
 const LinkList = () => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2 text-sm">
       {LINK.map((link) => (
         <Link
-          className="rounded-sm px-2 py-1 hover:bg-hover-nav"
+          className="flex items-center gap-2 rounded-sm px-2 py-1 hover:bg-hover-nav"
           key={link.path}
           href={link.path}>
-          {link.name}
+          {link.icon} {link.name}
         </Link>
       ))}
     </div>

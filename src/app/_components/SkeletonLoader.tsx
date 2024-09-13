@@ -12,7 +12,7 @@ const SkeletonLoader = () => {
               (_, calendarIndex) => (
                 <div
                   key={calendarIndex}
-                  className="size-48 rounded bg-primary/15"></div>
+                  className="size-52 rounded bg-primary/15"></div>
               )
             )}
           </div>

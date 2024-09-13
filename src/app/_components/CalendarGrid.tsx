@@ -8,13 +8,13 @@ async function CalendarGrid() {
   const user = await getSession();
 
   if (!user) {
-    return <div>Please sign in to view the content.</div>;
+    return <div>Connectez vous pour avoir accès à cette page</div>;
   }
 
   const data = await getUserCategoriesAndCalendars(user.id);
 
   if (!data) {
-    return <div>No data available</div>;
+    return <div>Aucune données disponibles</div>;
   }
 
   return (

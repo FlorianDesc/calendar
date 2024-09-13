@@ -1,8 +1,10 @@
 import RightPartHeader from "./RightPartHeader";
+import SearchBar from "./SearchBar";
 
 const HeaderBar = () => {
   return (
-    <div className="flex justify-end p-2">
+    <div className="flex justify-between p-2">
+      <SearchBar />
       <RightPartHeader />
     </div>
   );
