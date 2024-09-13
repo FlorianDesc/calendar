@@ -1,33 +1,31 @@
 "use client";
 
-import { useDialog } from "@/hooks/useDialog";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "./ui/button";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import FormCreateCalendar from "./FormCreateCalendar";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
 
 const DialogCreateCalendar = () => {
-  const { isOpen, setIsOpen } = useDialog();
-
   return (
-    <Dialog open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
-      <DialogTrigger className={cn(buttonVariants(), "w-fit")}>
-        Ajoutez un calendrier
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Ajoutez un calendrier</Button>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Recherchez dans les calendriers</DialogTitle>
-          <DialogDescription>
-            Vous pouvez chercher des événements ou des calendriers spécifiques
-            ici.
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader className="text-center">
+          <DialogTitle className="text-lg font-semibold text-primary">
+            Créer un nouveau calendrier
+          </DialogTitle>
+          <DialogDescription className="mb-6 text-sm text-primary">
+            Remplissez le formulaire ci-dessous pour créer votre calendrier
           </DialogDescription>
         </DialogHeader>
+        <FormCreateCalendar />
       </DialogContent>
     </Dialog>
   );

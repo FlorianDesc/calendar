@@ -10,15 +10,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignUpSchema } from "@/schemas/authFormSchema.schema";
+import { useFormHandler } from "@/hooks/useFormHandler";
+import { SignUpSchema } from "@/schemas/authForm.schema";
 import { SignUpType } from "@/types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const SignUpForm = () => {
-  const [error, setError] = useState<string | null>();
+  const { error, setError } = useFormHandler();
+
   const router = useRouter();
   const form = useForm<SignUpType>({
     resolver: zodResolver(SignUpSchema),

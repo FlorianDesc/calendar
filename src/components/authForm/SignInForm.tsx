@@ -10,22 +10,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignInSchema } from "@/schemas/authFormSchema.schema";
 import { SignInType } from "@/types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useFormHandler } from "@/hooks/useFormHandler";
 import GoogleIcon from "@/icons/GoogleIcon";
+import { SignInSchema } from "@/schemas/authForm.schema";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Spinner from "../ui/spinner";
 
 const SignInForm = () => {
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
+  const {
+    error,
+    setError,
+    isLoading,
+    setIsLoading,
+    isLoadingGoogle,
+    setIsLoadingGoogle,
+  } = useFormHandler();
 
   const router = useRouter();
   const form = useForm<SignInType>({
