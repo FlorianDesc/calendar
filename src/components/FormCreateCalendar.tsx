@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarSchema } from "@/schemas/calendar.schema";
 import { CalendarType } from "@/types/calendar.type";
 import { useForm } from "react-hook-form";
+import SearchUserInput from "./SearchUserInput";
 import SelectCategory from "./SelectCategory";
 
 const FormCreateCalendar = () => {
@@ -58,6 +59,20 @@ const FormCreateCalendar = () => {
                   <FormLabel>Catégorie</FormLabel>
                   <FormControl>
                     <SelectCategory field={field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="users"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Utilisateurs</FormLabel>
+                  <FormControl>
+                    <SearchUserInput field={field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
