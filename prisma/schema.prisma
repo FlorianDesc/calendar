@@ -77,18 +77,18 @@ model Category {
 }
 
 model Calendar {
-  id        String   @id @default(cuid())
-  title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  creatorId String
-  category  Category @relation(fields: [categoryId], references: [id])
+  id         String   @id @default(cuid())
+  title      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  creatorId  String
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
 
   creator User   @relation("UserCalendars", fields: [creatorId], references: [id])
   users   User[]
 
-  events     Event[]
-  categoryId String
+  events Event[]
 
   @@map("calendars")
 }
