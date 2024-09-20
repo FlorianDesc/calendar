@@ -15,7 +15,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarSchema } from "@/schemas/calendar.schema";
 import { CalendarType } from "@/types/calendar.type";
 import { useForm } from "react-hook-form";
-import SearchUserInput from "./SearchUserInput";
 import SelectCategory from "./SelectCategory";
 
 const FormCreateCalendar = () => {
@@ -71,9 +70,12 @@ const FormCreateCalendar = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Utilisateurs</FormLabel>
-                  <FormControl>
-                    <SearchUserInput field={field} />
-                  </FormControl>
+                  <div className="flex gap-2">
+                    <FormControl>
+                      <Input {...field}></Input>
+                    </FormControl>
+                    <Button variant={"secondary"}>+</Button>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}

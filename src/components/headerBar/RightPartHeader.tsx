@@ -7,6 +7,8 @@ import SessionBtn from "./SessionMenu";
 const RightPartHeader = async () => {
   const user = await getSession();
 
+  console.log(user);
+
   return (
     <div className="flex gap-4 pr-4">
       <SelectTheme />
