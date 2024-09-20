@@ -4,7 +4,7 @@ const CalendarPreview = () => {
   const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
 
   return (
-    <div className="mx-auto max-w-48 rounded-lg bg-background p-1 hover:cursor-pointer hover:bg-hover-nav">
+    <div className="min-w-48 rounded-lg bg-background p-1 hover:cursor-pointer hover:bg-hover-nav">
       <div className="grid grid-cols-7 gap-1 text-center text-primary/100">
         {daysOfWeek.map((day, index) => (
           <div key={index} className="text-[11px]">

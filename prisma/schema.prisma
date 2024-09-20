@@ -70,7 +70,7 @@ model Category {
   id       String     @id @default(cuid())
   title    String
   userId   String
-  Calendar Calendar[]
+  calendar Calendar[]
   user     User       @relation(fields: [userId], references: [id])
 
   @@map("categories")

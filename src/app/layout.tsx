@@ -28,9 +28,9 @@ export default function RootLayout({
         <ColorThemeProvider>
           <AuthProvider>
             <QueryProvider>
-              <div className="flex">
+              <div className="flex w-full">
                 <Navbar />
-                <div className="w-full">
+                <div className="w-5/6">
                   <div className="w-full divide-y-2 divide-muted">
                     <HeaderBar />
                     <NavPath />

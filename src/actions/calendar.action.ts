@@ -11,9 +11,24 @@ export async function getUserCategoriesAndCalendars(userId: string) {
       id: userId,
     },
     select: {
-      categories: true,
-      calendars: true,
-      sharedCalendars: true,
+      categories: {
+        select: {
+          id: true,
+          title: true,
+          calendar: {
+            take: 5,
+          },
+          _count: {
+            select: { calendar: true },
+          },
+        },
+      },
+      sharedCalendars: {
+        take: 5,
+      },
+      _count: {
+        select: { sharedCalendars: true },
+      },
     },
   });
 
