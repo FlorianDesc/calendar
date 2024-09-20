@@ -1,11 +1,13 @@
 import HeaderBar from "@/components/headerBar/HeaderBar";
 import Navbar from "@/components/navbar/Navbar";
-import NavPath from "@/components/NavPath";
+import NavPath from "@/components/subHeaderBar/NavPath";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AuthProvider from "./_provider/AuthProvider";
 import ColorThemeProvider from "./_provider/ColorThemeProvider";
+import QueryProvider from "./_provider/QueryProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,16 +27,19 @@ export default function RootLayout({
       <body className={cn(inter.className, "bg-background")}>
         <ColorThemeProvider>
           <AuthProvider>
-            <div className="flex">
-              <Navbar />
-              <div className="w-full">
-                <div className="w-full divide-y-2 divide-muted">
-                  <HeaderBar />
-                  <NavPath />
+            <QueryProvider>
+              <div className="flex">
+                <Navbar />
+                <div className="w-full">
+                  <div className="w-full divide-y-2 divide-muted">
+                    <HeaderBar />
+                    <NavPath />
+                  </div>
+                  <div className="w-full p-2">{children}</div>
                 </div>
-                <div className="w-full p-2">{children}</div>
               </div>
-            </div>
+              <Toaster />
+            </QueryProvider>
           </AuthProvider>
         </ColorThemeProvider>
       </body>

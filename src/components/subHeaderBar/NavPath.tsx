@@ -4,11 +4,11 @@ import { ChevronRight } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DialogCreateCalendar from "./DialogCreateCalendar";
+import DialogCreateCalendar from "../DialogCreateCalendar";
 
 const NavPath = () => {
-  const pathname = usePathname();
   const { data: session } = useSession();
+  const pathname = usePathname();
   const pathsArray = pathname.split("/").filter((elem) => elem !== "");
 
   return (

@@ -11,16 +11,16 @@ import {
 import { Input } from "../ui/input";
 
 const SearchBar = () => {
-  const { isOpen, setIsOpen } = useDialog();
+  const { isOpen, handleDialog } = useDialog();
 
   return (
     <div className="flex items-center">
       <Input
         className="h-8 text-xs"
         placeholder="Recherchez un calendrier ou un événement"
-        onClick={() => setIsOpen(true)}
+        onClick={handleDialog}
       />
-      <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
+      <Dialog open={isOpen} onOpenChange={handleDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Recherchez dans les calendriers</DialogTitle>

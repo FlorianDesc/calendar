@@ -1,4 +1,4 @@
-import { SignInSchema, SignUpSchema } from "@/schemas/authFormSchema.schema";
+import { SignInSchema, SignUpSchema } from "@/schemas/authForm.schema";
 import { z } from "zod";
 
 export type SignInType = z.infer<typeof SignInSchema>;

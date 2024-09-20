@@ -5,11 +5,17 @@ type UserAvatarProps = {
   src: string;
   hasImage?: boolean;
   alt?: string;
+  classname?: string;
 };
 
-const UserAvatar = ({ src, hasImage = true, alt }: UserAvatarProps) => {
+const UserAvatar = ({
+  src,
+  hasImage = true,
+  alt,
+  classname,
+}: UserAvatarProps) => {
   return (
-    <Avatar>
+    <Avatar className={classname}>
       {hasImage ? (
         <AvatarImage src={src} alt={alt} />
       ) : (
