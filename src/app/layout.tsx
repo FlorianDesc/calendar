@@ -1,6 +1,7 @@
 import HeaderBar from "@/components/headerBar/HeaderBar";
 import Navbar from "@/components/navbar/Navbar";
 import NavPath from "@/components/subHeaderBar/NavPath";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -37,6 +38,7 @@ export default function RootLayout({
                   <div className="w-full p-2">{children}</div>
                 </div>
               </div>
+              <Toaster />
             </QueryProvider>
           </AuthProvider>
         </ColorThemeProvider>

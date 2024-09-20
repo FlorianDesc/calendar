@@ -1,5 +1,6 @@
 "use client";
 
+import { useDialog } from "@/hooks/useDialog";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import FormCreateCalendar from "./FormCreateCalendar";
 import { Button } from "./ui/button";
@@ -11,8 +12,10 @@ import {
 } from "./ui/dialog";
 
 const DialogCreateCalendar = () => {
+  const { isOpen, handleDialog } = useDialog();
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={handleDialog}>
       <DialogTrigger asChild>
         <Button>Ajoutez un calendrier</Button>
       </DialogTrigger>
@@ -25,7 +28,7 @@ const DialogCreateCalendar = () => {
             Remplissez le formulaire ci-dessous pour créer votre calendrier
           </DialogDescription>
         </DialogHeader>
-        <FormCreateCalendar />
+        <FormCreateCalendar handleDialog={handleDialog} />
       </DialogContent>
     </Dialog>
   );
