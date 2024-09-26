@@ -35,7 +35,7 @@ export default function RootLayout({
                     <HeaderBar />
                     <NavPath />
                   </div>
-                  <div className="w-full p-2">{children}</div>
+                  {/* <div className="w-full p-2">{children}</div> */}
                 </div>
               </div>
               <Toaster />

@@ -6,7 +6,7 @@ const LinkList = () => {
     <div className="flex flex-col gap-5 text-sm">
       {LINK.map((link) => (
         <Link
-          className="flex items-center gap-2 rounded-sm px-2 py-1 hover:bg-hover-nav"
+          className="flex gap-2 rounded-sm py-1 pr-2 hover:bg-hover-nav"
           key={link.path}
           href={link.path}>
           {link.icon} {link.name}

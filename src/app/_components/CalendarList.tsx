@@ -9,7 +9,7 @@ type CalendarListProps = {
 
 const CalendarList = ({ calendars, lenght }: CalendarListProps) => {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
       {calendars.map((calendar) => (
         <div key={calendar.id} className="w-full">
           <CalendarPreview />

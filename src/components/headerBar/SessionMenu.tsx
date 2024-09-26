@@ -18,12 +18,14 @@ const SessionBtn = async () => {
     return;
   }
 
+  console.log(user.image ?? false);
+
   const src = user.image ?? getFirstLetter(user.username);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar src={src} hasImage={user.image ? true : false} />
+        {<UserAvatar src={src} hasImage={user.image ? true : false} />}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
