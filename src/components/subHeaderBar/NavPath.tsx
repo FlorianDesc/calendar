@@ -2,18 +2,15 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DialogCreateCalendar from "../DialogCreateCalendar";
 
 const NavPath = () => {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const pathsArray = pathname.split("/").filter((elem) => elem !== "");
 
   return (
-    <div className="flex w-full justify-between p-2">
+    <div className="flex w-full justify-between px-2 pb-6 pt-2">
       <div className="flex gap-3 text-xs">
         <Link
           className={cn(
@@ -45,7 +42,6 @@ const NavPath = () => {
           );
         })}
       </div>
-      {session?.user && <DialogCreateCalendar />}
     </div>
   );
 };

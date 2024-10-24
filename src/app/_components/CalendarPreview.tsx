@@ -1,7 +1,11 @@
-// components/CalendarPreview.js
+"use client";
+
+import { useCalendarDays } from "@/hooks/useCalendarDays";
+
 const CalendarPreview = () => {
-  const daysOfWeek = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-  const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
+  const { daysInMonth, daysOfWeek, emptyDays } = useCalendarDays();
+
+  console.log(emptyDays);
 
   return (
     <div className="w-48 rounded-lg bg-background p-1 hover:cursor-pointer hover:bg-hover-nav">
@@ -14,6 +18,9 @@ const CalendarPreview = () => {
       </div>
 
       <div className="mt-1 grid grid-cols-7 gap-1 text-center">
+        {Array.from({ length: emptyDays }).map((emptyDay, i) => {
+          return <div className="py-1" key={i}></div>;
+        })}
         {daysInMonth.map((day) => (
           <div key={day} className="py-1 text-[11px] text-primary/80">
             {day}

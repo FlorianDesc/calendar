@@ -11,21 +11,21 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 
-const DialogCreateCalendar = () => {
+const DialogCreateEvent = () => {
   const { isOpen, handleDialog } = useDialog();
 
   return (
     <Dialog open={isOpen} onOpenChange={handleDialog}>
       <DialogTrigger asChild>
-        <Button className="w-fit text-xs">Ajoutez un calendrier</Button>
+        <Button className="text-xs">Ajoutez un évenement</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="text-center">
           <DialogTitle className="text-lg font-semibold text-primary">
-            Créer un nouveau calendrier
+            Créer un nouvelle évenement
           </DialogTitle>
           <DialogDescription className="mb-6 text-sm text-primary">
-            Remplissez le formulaire ci-dessous pour créer votre calendrier
+            Remplissez le formulaire ci-dessous pour créer votre évenement
           </DialogDescription>
         </DialogHeader>
         <FormCreateCalendar handleDialog={handleDialog} />
@@ -34,4 +34,4 @@ const DialogCreateCalendar = () => {
   );
 };
 
-export default DialogCreateCalendar;
+export default DialogCreateEvent;
