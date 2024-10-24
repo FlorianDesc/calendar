@@ -24,18 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html className="text-primary" lang="fr" suppressHydrationWarning>
-      <body className={cn(inter.className, "bg-background")}>
+      <body className={cn(inter.className, "bg-background overflow-y-hidden")}>
         <ColorThemeProvider>
           <AuthProvider>
             <QueryProvider>
               <div className="flex w-full">
                 <Navbar />
-                <div className="w-5/6">
+                <div className="h-screen flex-1 overflow-y-scroll">
                   <div className="w-full divide-y-2 divide-muted">
                     <HeaderBar />
                     <NavPath />
                   </div>
-                  {/* <div className="w-full p-2">{children}</div> */}
+                  <div className="w-full p-2">{children}</div>
                 </div>
               </div>
               <Toaster />

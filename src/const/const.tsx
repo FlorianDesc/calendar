@@ -39,3 +39,5 @@ export const LINK = [
     icon: <Handshake size={14} />,
   },
 ];
+
+export const CALENDAR_PER_LINE = 5;

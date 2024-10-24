@@ -37,7 +37,7 @@ async function CalendarGrid() {
       {data.sharedCalendars.length > 0 && (
         <section className="mt-8">
           <CategoryName name="Calendriers partagés" />
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 sm:justify-start ">
             <CalendarList
               calendars={data.sharedCalendars}
               lenght={data._count.sharedCalendars}

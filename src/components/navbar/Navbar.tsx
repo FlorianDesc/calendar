@@ -36,7 +36,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="flex h-screen flex-col bg-muted px-6 py-2 sm:min-h-full sm:w-fit sm:py-0">
+    <div className="flex h-screen flex-col overflow-hidden bg-muted px-6 py-2 sm:min-h-full sm:w-fit sm:py-0">
       <div className="pt-2 sm:flex sm:items-center sm:p-0">
         <Menu
           size={16}
