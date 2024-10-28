@@ -2,7 +2,7 @@
 
 import { useDialog } from "@/hooks/useDialog";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import FormCreateCalendar from "./FormCreateCalendar";
+import FormCreateEvent from "./FormCreateEvent";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -28,7 +28,7 @@ const DialogCreateEvent = () => {
             Remplissez le formulaire ci-dessous pour créer votre évenement
           </DialogDescription>
         </DialogHeader>
-        <FormCreateCalendar handleDialog={handleDialog} />
+        <FormCreateEvent handleDialog={handleDialog} />
       </DialogContent>
     </Dialog>
   );

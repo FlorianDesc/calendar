@@ -54,3 +54,23 @@ export async function createCalendar(calendar: CalendarType) {
 
   return createdCalendar;
 }
+
+export async function getCalendarFromUser() {
+  const user = await getSession();
+
+  if (!user) {
+    return;
+  }
+
+  const calendars = await prisma.calendar.findMany({
+    where: {
+      creatorId: user.id,
+    },
+    select: {
+      id: true,
+      title: true,
+    },
+  });
+
+  return calendars;
+}
