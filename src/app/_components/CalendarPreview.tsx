@@ -1,11 +1,28 @@
 "use client";
 
+import { getEventFromCalendar } from "@/actions/event.action";
 import { useCalendarDays } from "@/hooks/useCalendarDays";
+import { Calendar } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
-const CalendarPreview = () => {
+type CalendarPreviewType = {
+  calendar: Calendar;
+};
+
+const CalendarPreview = ({ calendar }: CalendarPreviewType) => {
   const { daysInMonth, daysOfWeek, emptyDays } = useCalendarDays();
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
-  console.log(emptyDays);
+  const { data: events = [], isPending } = useQuery({
+    queryKey: ["events", calendar.id],
+    queryFn: async () => {
+      if (!userId) return [];
+      return await getEventFromCalendar(calendar.id);
+    },
+    enabled: !!userId,
+  });
 
   return (
     <div className="w-48 rounded-lg bg-background p-1 hover:cursor-pointer hover:bg-hover-nav">
@@ -17,15 +34,27 @@ const CalendarPreview = () => {
         ))}
       </div>
 
-      <div className="mt-1 grid grid-cols-7 gap-1 text-center">
-        {Array.from({ length: emptyDays }).map((emptyDay, i) => {
-          return <div className="py-1" key={i}></div>;
-        })}
-        {daysInMonth.map((day) => (
-          <div key={day} className="py-1 text-[11px] text-primary/80">
-            {day}
-          </div>
+      <div className="mt-1 grid grid-cols-7 gap-x-3 gap-y-4 text-center">
+        {Array.from({ length: emptyDays }).map((_, i) => (
+          <div className="py-1" key={i}></div>
         ))}
+
+        {daysInMonth.map((day) => {
+          const hasEvent = events.some((event) => {
+            const eventDate = new Date(event.date);
+            return eventDate.getDate() === day;
+          });
+
+          return (
+            <div
+              key={day}
+              className={`size-5 text-[11px] text-primary/80 ${
+                hasEvent ? "rounded-full bg-red-500 text-white" : ""
+              }`}>
+              {day}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

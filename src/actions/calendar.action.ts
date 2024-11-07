@@ -7,9 +7,7 @@ import { getSession } from "./auth.action";
 
 export async function getUserCategoriesAndCalendars(userId: string) {
   const userData = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
+    where: { id: userId },
     select: {
       categories: {
         select: {
@@ -25,6 +23,9 @@ export async function getUserCategoriesAndCalendars(userId: string) {
       },
       sharedCalendars: {
         take: 5,
+        include: {
+          events: true,
+        },
       },
       _count: {
         select: { sharedCalendars: true },

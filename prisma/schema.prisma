@@ -101,7 +101,7 @@ model Event {
   updatedAt  DateTime @updatedAt
   calendarId String
   creatorId  String
-  calendar   Calendar @relation(fields: [calendarId], references: [id])
+  calendar   Calendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
   creator    User     @relation(fields: [creatorId], references: [id])
 
   @@map("events")

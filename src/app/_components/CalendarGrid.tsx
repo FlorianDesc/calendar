@@ -27,7 +27,7 @@ async function CalendarGrid() {
               <div className="flex justify-center gap-4 sm:justify-start">
                 <CalendarList
                   calendars={category.calendar}
-                  lenght={category._count.calendar}
+                  length={category._count.calendar}
                 />
               </div>
             </section>
@@ -40,7 +40,7 @@ async function CalendarGrid() {
           <div className="flex justify-center gap-4 sm:justify-start ">
             <CalendarList
               calendars={data.sharedCalendars}
-              lenght={data._count.sharedCalendars}
+              length={data._count.sharedCalendars}
             />
           </div>
         </section>
