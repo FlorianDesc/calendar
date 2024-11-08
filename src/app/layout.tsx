@@ -2,7 +2,7 @@ import HeaderBar from "@/components/headerBar/HeaderBar";
 import Navbar from "@/components/navbar/Navbar";
 import NavPath from "@/components/subHeaderBar/NavPath";
 import { Toaster } from "@/components/ui/toaster";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AuthProvider from "./_provider/AuthProvider";
@@ -31,10 +31,12 @@ export default function RootLayout({
               <div className="relative flex w-full">
                 <Navbar />
                 <div className="h-screen flex-1 overflow-y-scroll">
-                  <div className="w-full divide-y-2 divide-muted">
+                  <div className="sticky top-0 z-50 w-full divide-y-2 divide-muted bg-background">
                     <HeaderBar />
-                    <NavPath />
+                    <div className="pointer-events-none absolute inset-x-0 top-[50px] h-[24px] bg-gradient-to-b from-background to-transparent"></div>
                   </div>
+
+                  <NavPath />
                   <div className="w-full p-2">{children}</div>
                 </div>
               </div>

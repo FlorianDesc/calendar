@@ -18,21 +18,23 @@ async function CalendarGrid() {
 
   return (
     <div>
-      {data.categories.map(
-        (category) =>
-          category.calendar.length > 0 && (
-            <section key={category.id} className="mb-6">
-              <CategoryName name={category.title} />
+      <div className="flex flex-col gap-8">
+        {data.categories.map(
+          (category) =>
+            category.calendar.length > 0 && (
+              <section key={category.id} className="flex flex-col">
+                <CategoryName name={category.title} />
 
-              <div className="flex justify-center gap-4 sm:justify-start">
-                <CalendarList
-                  calendars={category.calendar}
-                  length={category._count.calendar}
-                />
-              </div>
-            </section>
-          )
-      )}
+                <div className="flex justify-center gap-4 sm:justify-start">
+                  <CalendarList
+                    calendars={category.calendar}
+                    length={category._count.calendar}
+                  />
+                </div>
+              </section>
+            )
+        )}
+      </div>
 
       {data.sharedCalendars.length > 0 && (
         <section className="mt-8">

@@ -2,7 +2,7 @@
 
 import { getEventFromCalendar } from "@/actions/event.action";
 import { useCalendarDays } from "@/hooks/useCalendarDays";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Calendar } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -26,7 +26,7 @@ const CalendarPreview = ({ calendar }: CalendarPreviewType) => {
   });
 
   return (
-    <div className="w-48 rounded-lg bg-background p-1 hover:cursor-pointer hover:bg-hover-nav">
+    <div className="w-48 rounded-lg">
       <div className="grid grid-cols-7 gap-1 text-center text-primary/100">
         {daysOfWeek.map((day, index) => (
           <div key={index} className="text-[11px]">

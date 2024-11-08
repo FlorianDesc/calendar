@@ -1,4 +1,4 @@
-import { firstLetterUppercase } from "@/lib/utils";
+import { firstLetterUppercase } from "@/utils/utils";
 
 type CategoryNameProps = {
   name: string;

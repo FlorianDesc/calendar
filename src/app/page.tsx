@@ -12,7 +12,7 @@ export default async function page() {
   }
 
   return (
-    <div className="flex flex-col gap-4 text-sm">
+    <div className="flex flex-col gap-8 text-sm">
       {user && (
         <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:items-start sm:justify-start sm:gap-3">
           <DialogCreateCalendar />

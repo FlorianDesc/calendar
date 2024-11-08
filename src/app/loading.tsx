@@ -2,7 +2,7 @@ import SkeletonLoader from "./_components/SkeletonLoader";
 
 const Loading = () => {
   return (
-    <div className="space-y-6">
+    <div className="flex justify-center gap-4 sm:justify-start">
       <SkeletonLoader />
     </div>
   );

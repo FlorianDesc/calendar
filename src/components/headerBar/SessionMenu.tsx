@@ -1,5 +1,5 @@
 import { getSession } from "@/actions/auth.action";
-import { getFirstLetter } from "@/lib/utils";
+import { getFirstLetter } from "@/utils/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
