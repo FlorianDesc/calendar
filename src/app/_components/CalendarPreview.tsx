@@ -2,6 +2,7 @@
 
 import { getEventFromCalendar } from "@/actions/event.action";
 import { useCalendarDays } from "@/hooks/useCalendarDays";
+import { cn } from "@/lib/utils";
 import { Calendar } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -15,7 +16,7 @@ const CalendarPreview = ({ calendar }: CalendarPreviewType) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
-  const { data: events = [], isPending } = useQuery({
+  const { data: events = [] } = useQuery({
     queryKey: ["events", calendar.id],
     queryFn: async () => {
       if (!userId) return [];
@@ -48,9 +49,10 @@ const CalendarPreview = ({ calendar }: CalendarPreviewType) => {
           return (
             <div
               key={day}
-              className={`size-5 text-[11px] text-primary/80 ${
+              className={cn(
+                "size-5 text-[11px] text-primary/80",
                 hasEvent ? "rounded-full bg-red-500 text-white" : ""
-              }`}>
+              )}>
               {day}
             </div>
           );

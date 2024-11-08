@@ -37,7 +37,7 @@ export async function getEventFromCalendar(calendarId: string) {
   const events = await prisma.event.findMany({
     where: {
       calendarId: calendarId,
-      createdAt: {
+      date: {
         gte: startOfMonth(now),
         lte: endOfMonth(now),
       },
